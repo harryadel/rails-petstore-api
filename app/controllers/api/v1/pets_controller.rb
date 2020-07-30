@@ -1,5 +1,5 @@
 class PetsController < ApplicationController
-  before_action :set_pet, only: [:show, :update, :destroy]
+  before_action :set_pet, only: %i[show update destroy]
 
   # GET /pets
   def index
@@ -39,13 +39,14 @@ class PetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pet
-      @pet = Pet.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def pet_params
-      params.fetch(:pet, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pet
+    @pet = Pet.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def pet_params
+    params.fetch(:pet, {})
+  end
 end
